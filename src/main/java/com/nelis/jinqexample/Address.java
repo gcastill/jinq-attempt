@@ -1,4 +1,4 @@
-package com.nelis.jinqExample;
+package com.nelis.jinqexample;
 
 
 public class Address

@@ -1,4 +1,4 @@
-package com.nelis.jinqExample;
+package com.nelis.jinqexample;
 
 import javax.persistence.PersistenceUnit;
 import javax.persistence.EntityManager;

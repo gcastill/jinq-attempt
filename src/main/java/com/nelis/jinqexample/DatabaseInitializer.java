@@ -1,4 +1,4 @@
-package com.nelis.jinqExample;
+package com.nelis.jinqexample;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
