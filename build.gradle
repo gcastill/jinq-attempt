@@ -1,4 +1,5 @@
 apply plugin: 'java'
+
 apply plugin: 'application'
 
 
@@ -68,6 +69,12 @@ test {
     }
   }
 }
+
+compileJava {
+  sourceCompatibility = '1.8'
+  targetCompatibility = '1.8'
+ }
+
 
 //
 // Gradle Wrapper
