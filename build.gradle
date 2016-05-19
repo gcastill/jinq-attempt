@@ -1,0 +1,79 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+
+def VERSION = '0.0.1'
+def MAVEN_REPO_URL = "http://dev1.prognet.lan:8081/repository/maven-central"
+def MAIN_CLASS_NAME = "com.nelis.jinqExample.JinqExample"
+
+
+//
+// Dependencies
+//
+
+// Declare repositories
+repositories {
+  //maven {
+  //    url MAVEN_REPO_URL
+  //}
+  mavenCentral()
+}
+
+// Declare dependencies
+dependencies {
+  compile 'org.apache.derby:derby:10.12.1.1',
+    'org.jinq:api:1.8.11',
+    'org.jinq:jinq-jpa:1.8.11',
+    'org.springframework:spring-core:4.2.5.RELEASE',
+    'org.springframework:spring-context:4.2.5.RELEASE',
+    'javax:javaee-api:7.0'
+
+  testCompile 'junit:junit:4.12'
+
+  runtime 'org.apache.derby:derby:10.12.1.1',
+    'org.jinq:api:1.8.11',
+    'org.jinq:jinq-jpa:1.8.11',
+    'org.springframework:spring-core:4.2.5.RELEASE',
+    'org.springframework:spring-context:4.2.5.RELEASE',
+    'javax:javaee-api:7.0'
+}
+
+
+//
+// JAR
+//
+
+// Set jar information
+jar {
+  mainClassName = MAIN_CLASS_NAME
+  baseName = 'jinqExample'
+  version = VERSION
+  manifest {
+    attributes (
+      'Main-Class': MAIN_CLASS_NAME,
+      'Implementation-Title': project.name,
+      'Implementation-Version': VERSION,
+      'Class-Path': configurations.runtime.collect { it.getName() }.join(' ')
+    )
+  }
+}
+
+test {
+  testLogging {
+    exceptionFormat = 'full'
+    afterSuite { desc, result ->
+      if (!desc.parent) { // will match the outermost suite
+        println "Results: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} successes, ${result.failedTestCount} failures, ${result.skippedTestCount} skipped)"
+      }
+    }
+  }
+}
+
+//
+// Gradle Wrapper
+//
+
+// Allows you to use Gradle without installing it first
+task wrapper(type: Wrapper) {
+  gradleVersion = '2.12'
+}
