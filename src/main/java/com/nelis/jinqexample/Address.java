@@ -1,15 +1,28 @@
 package com.nelis.jinqexample;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "location")
 public class Address {
+
+  @Id
   private int number = 0;
   private String street = "";
+
+  public Address() {
+
+  }
 
   public Address(int number, String street) {
     this.number = number;
     this.street = street;
   }
 
-  public String getAddress() {
+  @Override
+  public String toString() {
     return "" + number + " " + street;
   }
 

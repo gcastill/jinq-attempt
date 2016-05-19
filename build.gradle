@@ -2,10 +2,10 @@ apply plugin: 'java'
 
 apply plugin: 'application'
 
+project.buildDir= 'target'
 
 def VERSION = '0.0.1'
-def MAVEN_REPO_URL = "http://dev1.prognet.lan:8081/repository/maven-central"
-def MAIN_CLASS_NAME = "com.nelis.jinqExample.JinqExample"
+def MAIN_CLASS_NAME = "com.nelis.jinqexample.JinqExample"
 
 
 //
@@ -14,9 +14,6 @@ def MAIN_CLASS_NAME = "com.nelis.jinqExample.JinqExample"
 
 // Declare repositories
 repositories {
-  //maven {
-  //    url MAVEN_REPO_URL
-  //}
   mavenCentral()
 }
 
@@ -27,16 +24,11 @@ dependencies {
     'org.jinq:jinq-jpa:1.8.11',
     'org.springframework:spring-core:4.2.5.RELEASE',
     'org.springframework:spring-context:4.2.5.RELEASE',
-    'javax:javaee-api:7.0'
+    'javax:javaee-api:7.0',
+    'org.eclipse.persistence:org.eclipse.persistence.jpa:2.6.3'
 
   testCompile 'junit:junit:4.12'
 
-  runtime 'org.apache.derby:derby:10.12.1.1',
-    'org.jinq:api:1.8.11',
-    'org.jinq:jinq-jpa:1.8.11',
-    'org.springframework:spring-core:4.2.5.RELEASE',
-    'org.springframework:spring-context:4.2.5.RELEASE',
-    'javax:javaee-api:7.0'
 }
 
 
