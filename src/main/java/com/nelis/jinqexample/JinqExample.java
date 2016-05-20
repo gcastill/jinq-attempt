@@ -1,20 +1,24 @@
 package com.nelis.jinqexample;
 
-import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class JinqExample {
 
   public static void main(String[] args) throws Exception {
 
-    ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:config/spring/spring-beans.xml");
+    AbstractApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:config/spring/spring-beans.xml");
 
-    // Create our embedded database
-    DatabaseInitializer dbInitializer = new DatabaseInitializer();
-    dbInitializer.initializeDatabase();
+    // database initializer is done in spring as a init-method
 
-    // Run some jinq queries on the database
-    JinqQueryRunner queryRunner = new JinqQueryRunner();
-    queryRunner.runQueries();
+    // address store implementation uses Jinq
+    AddressStore store = ctx.getBean("addressStore", AddressStore.class);
+
+    // Run some queries on the database
+    AddressQueryRunner queryRunner = new AddressQueryRunner();
+
+    queryRunner.runQueries(store);
+
+    ctx.close();
   }
 }
