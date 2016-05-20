@@ -33,7 +33,7 @@ public class JinqAddressStore implements AddressStore {
 
   @Override
   public List<Address> allAddressesHigherThan(int number) {
-    return newStream().filter(address -> address.getNumber() > number).collect(toList());
+    return newStream().where(address -> address.getNumber() > number).collect(toList());
 
   }
 
