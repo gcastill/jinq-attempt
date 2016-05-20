@@ -19,19 +19,19 @@ public class DatabaseInitializer {
     try {
       // Set up database connection properties
       Properties props = new Properties();
-      // props.put("user", "user1");
-      // props.put("password", "user1");
+      props.setProperty("create", "true");
 
-      String dbName = "target/derbydb"; // the name of the database
+      String dbName = "build/derbyDb"; // the name of the database
 
       // Set up database connection
-      conn = DriverManager.getConnection(PROTOCOL + dbName, props);
+      String url = PROTOCOL + dbName;
+      conn = DriverManager.getConnection(url, props);
       System.out.println("Connected to and created database " + dbName);
-      conn.setAutoCommit(false);
+      System.out.println(url);
 
       // Create a table
       s = conn.createStatement();
-      s.execute("create table location(num int, addr varchar(40))");
+      s.execute("create table location(number int, addr varchar(40))");
       System.out.println("Created table location");
 
       // Add some records

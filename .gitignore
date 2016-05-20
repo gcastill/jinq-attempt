@@ -4,5 +4,6 @@
 /target
 /.gradle
 /derbyDB
+/build/
 /bin/
 /gradle/

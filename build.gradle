@@ -2,8 +2,6 @@ apply plugin: 'java'
 
 apply plugin: 'application'
 
-project.buildDir= 'target'
-
 def VERSION = '0.0.1'
 def MAIN_CLASS_NAME = "com.nelis.jinqexample.JinqExample"
 
@@ -62,10 +60,10 @@ test {
   }
 }
 
-compileJava {
-  sourceCompatibility = '1.8'
-  targetCompatibility = '1.8'
- }
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
 
 
 //
